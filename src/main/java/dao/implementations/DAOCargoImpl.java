@@ -41,7 +41,7 @@ public class DAOCargoImpl implements DAOCargo {
                 "cargo_desc.length, cargo_desc.width, cargo_desc.depth, cargo_desc.weight " +
                 "FROM cargo_desc JOIN cargo_info info on cargo_desc.cargo_id = info.cargo_id where info.cargo_id = ?");
         preparedStatement.setInt(1, key);
-
+        logger.info("Appropriate object was read.");
         ResultSet resultSet = preparedStatement.executeQuery();
         resultSet.next();
         Cargo cargo = new Cargo();
