@@ -12,5 +12,5 @@ public interface DAOFactory {
 
     DAOCargo getDAOCargoImpl(Connection connection);
 
-    DAOClient getDAOUserImpl(Connection connection);
+    DAOClient getDAOClientImpl(Connection connection);
 }

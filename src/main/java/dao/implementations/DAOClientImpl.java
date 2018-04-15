@@ -49,7 +49,15 @@ public class DAOClientImpl implements DAOClient {
 
     @Override
     public Client checkAuth(String login, String password) throws SQLException {
-        return null;
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT login, password FROM client_ind" +
+                " WHERE login = '" + login + "' AND password = '" + password + "'");
+        ResultSet resultSet = preparedStatement.executeQuery();
+        resultSet.next();
+
+        Client client = new Client();
+        client.setLogin(resultSet.getString("login"));
+        client.setPassword(resultSet.getString("password"));
+        return client;
     }
 
     /**

@@ -34,7 +34,7 @@ public class ConnectionTesting {
         DAOFactory daoFactory = new DAOFactoryImpl();
         List<Client> clients;
         try(Connection connection = daoFactory.getConnection()) {
-            DAOClient daoClient = daoFactory.getDAOUserImpl(connection);
+            DAOClient daoClient = daoFactory.getDAOClientImpl(connection);
             clients = daoClient.getAll();
         }
 

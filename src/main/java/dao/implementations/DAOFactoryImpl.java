@@ -36,7 +36,7 @@ public class DAOFactoryImpl implements DAOFactory {
     }
 
     @Override
-    public DAOClient getDAOUserImpl(Connection connection) {
+    public DAOClient getDAOClientImpl(Connection connection) {
         return new DAOClientImpl(connection);
     }
 }
