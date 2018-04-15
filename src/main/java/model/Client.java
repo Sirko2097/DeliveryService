@@ -2,21 +2,33 @@ package model;
 
 import java.util.Objects;
 
-public class User {
+public class Client {
     private String firstName;
     private String lastName;
     private String login;
     private String password;
+    private String email;
+
+    public Client() {
+    }
+
+    public Client(String firstName, String lastName, String login, String password, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.login = login;
+        this.password = password;
+        this.email = email;
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(firstName, user.firstName) &&
-                Objects.equals(lastName, user.lastName) &&
-                Objects.equals(login, user.login) &&
-                Objects.equals(password, user.password);
+        Client client = (Client) o;
+        return Objects.equals(firstName, client.firstName) &&
+                Objects.equals(lastName, client.lastName) &&
+                Objects.equals(login, client.login) &&
+                Objects.equals(password, client.password);
     }
 
     @Override
@@ -56,5 +68,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

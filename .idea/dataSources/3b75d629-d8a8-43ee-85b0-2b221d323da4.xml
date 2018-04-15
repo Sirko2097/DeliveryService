@@ -1043,6 +1043,7 @@
     <column id="256" parent="234" name="first_name">
       <Position>2</Position>
       <DataType>varchar(50)|0s</DataType>
+      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="257" parent="234" name="last_name">
@@ -1095,15 +1096,21 @@
       <DataType>date|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="266" parent="235" name="delivery_info_client_fk">
+    <column id="266" parent="235" name="total_price">
+      <Position>6</Position>
+      <DataType>double|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="267" parent="235" name="delivery_info_client_fk">
       <ColNames>client_id</ColNames>
     </index>
-    <key id="267" parent="235" name="PRIMARY">
+    <key id="268" parent="235" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>delivery_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="268" parent="235" name="delivery_info_client_fk">
+    <foreign-key id="269" parent="235" name="delivery_info_client_fk">
       <ColNames>client_id</ColNames>
       <RefSchemaName>deliveryService</RefSchemaName>
       <RefTableName>client_ind</RefTableName>

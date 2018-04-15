@@ -19,7 +19,7 @@ public class DAOCargoImpl implements DAOCargo {
 
     private final static Logger logger = Logger.getLogger(DAOCargoImpl.class);
 
-    public DAOCargoImpl(Connection connection) {
+    DAOCargoImpl(Connection connection) {
         this.connection = connection;
     }
 
@@ -61,7 +61,7 @@ public class DAOCargoImpl implements DAOCargo {
     @Override
     public List<Cargo> getAll() throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("SELECT type, length," +
-                "width, depth, weight, info.cargo_id FROM cargo_desc JOIN cargo_info info on cargo_desc.cargo_id = info.cargo_id");
+                "width, depth, weight, info.cargo_id FROM cargo_desc LEFT JOIN cargo_info info on cargo_desc.cargo_id = info.cargo_id");
         ResultSet resultSet = preparedStatement.executeQuery();
 
         List<Cargo> cargoes = new ArrayList<>();
@@ -82,7 +82,7 @@ public class DAOCargoImpl implements DAOCargo {
     public List<Cargo> getAll(int key) throws SQLException {
         PreparedStatement preparedStatement = connection.prepareStatement("SELECT type, length," +
                 "width, depth, weight, info.cargo_id FROM cargo_desc JOIN cargo_info info " +
-                "on cargo_desc.cargo_id = info.cargo_id WHERE info.cargo_id = ?");
+                "on cargo_desc.cargo_id = info.cargo_id WHERE info.cargo_id = " + key);
         ResultSet resultSet = preparedStatement.executeQuery();
 
         List<Cargo> cargoes = new ArrayList<>();

@@ -2,7 +2,7 @@ package dao.implementations;
 
 import dao.interfaces.DAOCargo;
 import dao.interfaces.DAOFactory;
-import dao.interfaces.DAOUser;
+import dao.interfaces.DAOClient;
 import org.apache.log4j.Logger;
 
 import java.sql.Connection;
@@ -36,7 +36,7 @@ public class DAOFactoryImpl implements DAOFactory {
     }
 
     @Override
-    public DAOUser getDAOUserImpl(Connection connection) {
-        return null;
+    public DAOClient getDAOUserImpl(Connection connection) {
+        return new DAOClientImpl(connection);
     }
 }
