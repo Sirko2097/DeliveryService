@@ -4,10 +4,7 @@ import dao.interfaces.DAOClient;
 import model.Client;
 import org.apache.log4j.Logger;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,7 +50,7 @@ public class DAOClientImpl implements DAOClient {
                 " WHERE login = '" + login + "' AND password = '" + password + "'");
         ResultSet resultSet = preparedStatement.executeQuery();
         resultSet.next();
-
+        /*перевірка, якщо клієнт увів не коректні дані*/
         Client client = new Client();
         client.setLogin(resultSet.getString("login"));
         client.setPassword(resultSet.getString("password"));
@@ -78,5 +75,26 @@ public class DAOClientImpl implements DAOClient {
                     resultSet.getString("email")));
         }
         return clients;
+    }
+
+    @Override
+    public void registration(String login, String password, String firstName) throws SQLException {
+        Statement statement = connection.createStatement();
+        if (!statement.execute("SELECT login FROM client_ind WHERE login = '" + login + "'")) {
+            connection.setAutoCommit(false);
+            try {
+                PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO client_ind (login, password) " +
+                        "VALUES ('" + login + "', '" + password + "')");
+                preparedStatement.executeLargeUpdate();
+                connection.commit();
+
+            } catch (SQLException ex) {
+                connection.rollback();
+            }
+            connection.setAutoCommit(true);
+        } else {
+            System.out.println("try again");
+        }
+
     }
 }

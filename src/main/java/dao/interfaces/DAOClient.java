@@ -13,4 +13,6 @@ public interface DAOClient {
     Client checkAuth(String login, String password) throws SQLException;
 
     List<Client> getAll() throws SQLException;
+
+    void registration(String login, String password, String firstName) throws SQLException;
 }
